@@ -64,24 +64,6 @@ document.querySelectorAll('[data-filter]').forEach(button => button.addEventList
   });
 }));
 
-const header = document.querySelector('.site-header');
-const fields = {rose:'#c9a9b5', white:'#ffffff', mustard:'#aa9e54'};
-const chapters = [...document.querySelectorAll('[data-field]')];
-function syncHeader() {
-  const edge = header.getBoundingClientRect().bottom + 1;
-  const chapter = chapters.find(item => {
-    const bounds = item.getBoundingClientRect();
-    return bounds.top <= edge && bounds.bottom > edge;
-  });
-  header.style.backgroundColor = fields[chapter?.dataset.field || 'rose'];
-}
-let headerFrame;
-window.addEventListener('scroll', () => {
-  cancelAnimationFrame(headerFrame);
-  headerFrame = requestAnimationFrame(syncHeader);
-}, {passive:true});
-window.addEventListener('resize', syncHeader);
-syncHeader();
 const contactNote = document.getElementById('contact-note');
 if (profile.email || profile.wechat) contactNote.hidden = true;
 
