@@ -30,6 +30,22 @@ function element(tag, className, text) {
   return result;
 }
 function makeCover(item) {
+  if (item.image && item.href) {
+    const cover = element('a','cover-art article-cover');
+    cover.href = item.href;
+    cover.target = '_blank';
+    cover.rel = 'noopener noreferrer';
+    cover.setAttribute('aria-label',`${item.title}，打开公众号原文`);
+    const image = element('img');
+    image.src = item.image;
+    image.alt = item.imageAlt || `${item.title}的文章首图`;
+    image.width = 1080;
+    image.height = 608;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    cover.append(image);
+    return cover;
+  }
   const cover = element('div', `cover-art cover-${item.cover || 'research'}`);
   cover.setAttribute('aria-hidden', 'true');
   cover.append(element('span','cover-label',`${profile.initials || 'XR'} STUDIO / ${item.type || 'EXPLORATION'}`));
@@ -41,7 +57,7 @@ function makeCover(item) {
   return cover;
 }
 function makeCard(item, index, count) {
-  const card = element('article','deck-card');
+  const card = element('article',item.image ? 'deck-card article-card' : 'deck-card');
   card.dataset.slideIndex = String(index);
   card.setAttribute('role','group');
   card.setAttribute('aria-roledescription','幻灯片');
@@ -140,7 +156,7 @@ document.querySelectorAll('.carousel').forEach(setupCarousel);
 for (const key of ['projects','resources','writing']) {
   document.querySelectorAll(`[data-count="${key}"]`).forEach(node => { node.textContent = String(profile[key]?.length || 0).padStart(2,'0'); });
 }
-document.querySelector('.status-summary').textContent = `${profile.projects?.length || 0} PROJECTS · ${profile.resources?.length || 0} RESOURCES · ${profile.writing?.length || 0} DRAFTS`;
+document.querySelector('.status-summary').textContent = `${profile.projects?.length || 0} PROJECTS · ${profile.resources?.length || 0} RESOURCES · ${profile.writing?.length || 0} ARTICLES`;
 
 const dialog = document.getElementById('detail-dialog');
 function showDetail(entry) {

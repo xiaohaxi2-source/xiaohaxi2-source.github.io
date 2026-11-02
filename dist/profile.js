@@ -24,8 +24,8 @@ window.PROFILE = {
     {title:'AI 产品评估清单', type:'评估模板', description:'围绕任务完成、输出质量、可核查性和失败恢复，整理需要验证的内容。', cover:'evaluation', coverTitle:'AI 产品评估', coverSubtitle:'任务 / 质量 / 信任 / 恢复', action:'下载 Markdown 模板', href:'resources/ai-evaluation.md', download:true}
   ],
   writing: [
-    {title:'当 AI 能力越来越强，产品经理该关注什么？', type:'提纲示例', description:'从具体任务出发，重新思考产品创造价值的方式。', cover:'thinking', coverTitle:'产品的价值', coverSubtitle:'能力之外，回到人的任务。', action:'阅读文章提纲', detail:'note-one'},
-    {title:'在画原型之前，先把问题问清楚', type:'提纲示例', description:'好的起点，是对用户、场景与真实问题的理解。', cover:'interview', coverTitle:'先问好问题', coverSubtitle:'从一次具体经历开始。', action:'阅读文章提纲', detail:'note-two'},
-    {title:'留一点时间，给没有标准答案的事', type:'提纲示例', description:'留住一个小小的观察，让它成为新的开始。', cover:'notebook', coverTitle:'保持好奇', coverSubtitle:'给还没想完的事，留一页纸。', action:'阅读文章提纲', detail:'note-three'}
+    {title:'DeepSeek Super-agent：卡住的不是模型，是人的注意力', type:'公众号文章', description:'从任务分工、事件驱动到持久状态，讨论 Agent 如何持续推进工作，减少用户反复派活和盯进度的负担。', image:'assets/articles/deepseek-super-agent.jpg', imageAlt:'被多个消息窗口包围的用户，呈现多任务带来的注意力负担', action:'阅读原文', href:'https://mp.weixin.qq.com/s/z2SSDzhh5W_yretenWN-vg'},
+    {title:'给 Codex 配上 REA，AI 复刻软件开始讲证据了', type:'公众号文章', description:'从应用调查到独立实现，观察 Codex 与 REA 如何用证据理解软件，并通过真实操作检验产品是否可用。', image:'assets/articles/codex-rea.jpg', imageAlt:'从应用包结构、证据调查到任务管理软件重建的过程示意', action:'阅读原文', href:'https://mp.weixin.qq.com/s/J6lhOOtYyc3i9elSbL3nXA'},
+    {title:'Hugging Face，开源 AI 的模型供应链总站', type:'公众号文章', description:'沿着模型发现、试跑与部署的路径，梳理 Hugging Face 的产品结构，以及选型时的许可证、成本和管理问题。', image:'assets/articles/hugging-face.jpg', imageAlt:'Hugging Face 模型、数据、演示、评估与云端部署的供应链示意', action:'阅读原文', href:'https://mp.weixin.qq.com/s/zYqaAlEUOwQkg9-_tjUP-w'}
   ]
 };

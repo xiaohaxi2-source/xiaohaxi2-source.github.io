@@ -1,0 +1,26 @@
+[
+  {
+    "title": "DeepSeek Super-agent：卡住的不是模型，是人的注意力",
+    "author": "哈的第二大脑",
+    "article": "https://mp.weixin.qq.com/s/z2SSDzhh5W_yretenWN-vg",
+    "image": "deepseek-super-agent.jpg",
+    "originalImage": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/kvibfcVY7Jnqbxm3dMW1fLCarLlOHOCicYg23K5uibibaZ0HWRzemLOZBeuLtNIXmkqNEPqgKuwg0FQMLl7icFsnAah692xMaX040siceqgicYpIZg/640?from=appmsg&watermark=1#imgIndex=0",
+    "imagePosition": "文章正文第一张图片"
+  },
+  {
+    "title": "给 Codex 配上 REA，AI 复刻软件开始讲证据了",
+    "author": "哈的第二大脑",
+    "article": "https://mp.weixin.qq.com/s/J6lhOOtYyc3i9elSbL3nXA",
+    "image": "codex-rea.jpg",
+    "originalImage": "https://mmbiz.qpic.cn/mmbiz_jpg/kvibfcVY7JnrKzCrUxnCVglNr9cINJeTREm4q1GfcPxVDjeJochpONIeo01J5lSaN5J5rmxlWZlfdAIuIEGPcV9aXM1mwKA26D0yDZOibbicrU/640?from=appmsg&watermark=1#imgIndex=0",
+    "imagePosition": "文章正文第一张图片"
+  },
+  {
+    "title": "Hugging Face，开源 AI 的模型供应链总站",
+    "author": "哈的第二大脑",
+    "article": "https://mp.weixin.qq.com/s/zYqaAlEUOwQkg9-_tjUP-w",
+    "image": "hugging-face.jpg",
+    "originalImage": "https://mmbiz.qpic.cn/mmbiz_jpg/kvibfcVY7JnrHb6JIvKbspaC3lJ47aqBtQRf8Oqp3bGHFurZTK0vVttgw99L3sjAq0czPFZ6OdBgVMGPaFb6rqs4awBDlv2TiaI0SwVQnQK5o/640?from=appmsg&watermark=1#imgIndex=0",
+    "imagePosition": "文章正文第一张图片"
+  }
+]
