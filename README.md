@@ -1,0 +1,36 @@
+# 王秀睿的个人网站
+
+王秀睿 · AI 产品经理的个人网站。包含个人介绍、作品筛选、作品详情、随笔提纲与联系入口，适配桌面和手机。
+
+这是纯 HTML、CSS 和 JavaScript 项目。`dist/` 内的文件就是完整可编辑源码，直接部署即可，无需安装依赖或构建。
+
+## 预览
+
+在本目录运行 `python3 -m http.server 4173 --directory dist`，访问 http://localhost:4173 。也可以直接打开 `dist/index.html`。
+
+## 替换内容
+
+- `dist/profile.js`：姓名、职业、简介、邮箱和微信。联系方式为空时展示待补充提示。
+- `dist/index.html`：页面文案、作品卡片与随笔列表。
+- `dist/app.js`：作品与文章详情，包含明确标注的预置示例。请用实际经历和正式文章替换。
+- `dist/styles.css`：配色与响应式排版。
+
+网站没有后台、数据采集或表单服务。联系按钮在配置邮箱后调用访客邮件客户端。
+
+## 发布到 GitHub Pages
+
+`.github/workflows/pages.yml` 会在推送到 `main` 后，自动将 `dist/` 发布到 GitHub Pages。发布产物顶层包含实际的 `index.html`。
+
+在仓库的 Settings → Pages → Build and deployment 中，将 Source 设为 GitHub Actions。实际访问链接以 Pages 设置页或成功部署任务的结果为准。
+
+网站使用相对资源路径，支持个人主页域名和仓库子路径。字体优先尝试 Google Fonts，无法加载时回退到系统字体。部署不需要任何自定义密钥。
+
+## 内容状态
+
+- 姓名和职业已填为王秀睿、AI 产品经理。
+- 作品和随笔是明确标注的展示示例，尚非真实项目经历或正式文章。
+- 邮箱和微信尚未配置。
+
+## 许可
+
+当前尚未指定开源许可证。代码公开不代表已授予开源许可证中的使用授权。
