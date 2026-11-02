@@ -1,78 +1,249 @@
 const profile = window.PROFILE || {};
-for (const key of ['name', 'role', 'bio']) {
-  if (profile[key]) document.querySelectorAll(`[data-${key}]`).forEach(el => { el.textContent = profile[key]; });
-}
-if (profile.name) document.title = `${profile.name} — ${profile.role || '个人网站'}`;
-document.getElementById('year').textContent = new Date().getFullYear();
+const entries = window.DETAILS || {};
+const main = document.getElementById('content');
+const sections = [...main.querySelectorAll('.page-section')];
+const sidebar = document.querySelector('.sidebar');
+const navigation = document.querySelector('.section-nav');
+const navigationLinks = [...navigation.querySelectorAll('a')];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const initialHash = location.hash;
 
-const entries = {
-  knowledge: { label: '概念作品 / 展示示例', title: '让知识，不止于收藏', blocks: [
-    ['项目定位', '这是用于展示作品集排版的概念项目，尚未填写王秀睿的实际项目经历。它围绕一个问题展开：收藏的内容，怎样才能在需要时被重新找到？'],
-    ['可以怎样展开', '先访谈有资料整理习惯的用户，记录他们最近一次寻找资料的完整过程。围绕导入、检索、引用和回溯，绘制关键任务流程。'],
-    ['值得验证的问题', '用户需要的是一个直接的答案，还是一条可核查的出处？检索失败时，产品应该怎样呈现不确定性？'],
-    ['待补充的真实内容', '项目背景、本人职责、设计过程、原型链接和经过验证的项目结果。'] ] },
-  focus: { label: '概念作品 / 展示示例', title: '给专注，一点空间', blocks: [
-    ['项目定位', '这是一个轻量专注工具的概念展示，用来示意作品集中的体验设计案例。'],
-    ['体验方向', '让用户用尽量少的步骤开始一个专注时段。在完成、暂停和中断时，提供清晰且可恢复的状态。'],
-    ['验证思路', '观察用户能否独立完成首次使用；对比不同提醒方式是否干扰工作；记录中途退出的具体原因。'],
-    ['待补充的真实内容', '实际用户问题、交互原型、迭代依据，以及本人承担的工作。'] ] },
-  research: { label: '研究笔记 / 内容示例', title: '从功能到体验的距离', blocks: [
-    ['研究起点', '这是一份产品拆解清单示例，可以作为整理真实研究笔记的起点。'],
-    ['先看任务', '用户带着什么目标进入产品？完成任务需要哪些输入？什么结果才算成功？'],
-    ['再看过程', '记录首次使用、正常完成、输入不完整和任务失败时的路径。区分实际观察、公开信息和自己的推断。'],
-    ['最后看证据', '保留来源、日期和场景。对每个产品判断写下支撑材料；信息缺失时留下待验证的问题。'] ] },
-  'note-one': { label: '写作主题 / 提纲示例', title: '当 AI 能力越来越强，产品经理该关注什么？', blocks: [
-    ['从任务出发', '可以先挑选一个具体任务，观察用户原来怎样完成，再判断 AI 在哪个环节能带来实际帮助。'],
-    ['让结果可判断', '围绕正确性、可核查性和完成任务的成本，建立具体的评估方式。'],
-    ['把失败纳入体验', '思考信息不足、生成错误和用户想撤销时，产品应该提供哪些路径。'],
-    ['写作说明', '这是预置主题提纲，待替换为个人正式文章。'] ] },
-  'note-two': { label: '写作主题 / 提纲示例', title: '在画原型之前，先把问题问清楚', blocks: [
-    ['问最近一次', '请用户回忆最近一次遇到问题的具体场景，记录触发原因、当时的操作和最终结果。'],
-    ['分清目标和手段', '用户提出一个功能时，继续了解他希望借此完成什么，以及目前采用的替代方法。'],
-    ['明确验证条件', '在实现前写下假设和观察指标，确定出现什么证据时应该修改方案。'],
-    ['写作说明', '这是预置主题提纲，待替换为个人正式文章。'] ] },
-  'note-three': { label: '写作主题 / 提纲示例', title: '留一点时间，给没有标准答案的事', blocks: [
-    ['给观察留个位置', '记录一个让自己停下来的细节：一句话、一次使用体验，或者一个尚未解释清楚的问题。'],
-    ['把想法做小一点', '选择一个可以动手的小实验，让想法获得具体的形状，再决定是否继续。'],
-    ['允许问题暂时开放', '留下观察和疑问，等新的经历带来更多线索。'],
-    ['写作说明', '这是预置主题提纲，待替换为个人正式文章。'] ] }
-};
+for (const [attribute, key] of [['name','name'], ['role','role'], ['bio','bio'], ['tagline','tagline'], ['initials','initials'], ['english-name','englishName']]) {
+  if (profile[key]) document.querySelectorAll(`[data-${attribute}]`).forEach(element => { element.textContent = profile[key]; });
+}
+document.title = `${profile.name || '个人主页'} · ${profile.role || ''} | ${profile.initials || 'XR'} OS`;
+document.getElementById('year').textContent = new Date().getFullYear();
+document.querySelectorAll('[data-github]').forEach(link => { if (profile.github) link.href = profile.github; });
+if (profile.avatar) {
+  document.querySelectorAll('[data-avatar]').forEach(image => {
+    image.alt = `${profile.name || ''}的个人头像`;
+    image.addEventListener('load', () => { image.hidden = false; image.closest('.avatar-slot').classList.add('has-avatar'); });
+    image.addEventListener('error', () => { image.hidden = true; image.closest('.avatar-slot').classList.remove('has-avatar'); });
+    image.src = profile.avatar;
+  });
+}
+
+function element(tag, className, text) {
+  const result = document.createElement(tag);
+  if (className) result.className = className;
+  if (text !== undefined) result.textContent = text;
+  return result;
+}
+function makeCover(item) {
+  const cover = element('div', `cover-art cover-${item.cover || 'research'}`);
+  cover.setAttribute('aria-hidden', 'true');
+  cover.append(element('span','cover-label',`${profile.initials || 'XR'} STUDIO / ${item.type || 'EXPLORATION'}`));
+  cover.append(element('strong','cover-title',item.coverTitle || item.title));
+  cover.append(element('span','cover-subtitle',item.coverSubtitle || ''));
+  const scene = element('div','cover-scene');
+  scene.append(element('i'),element('i'),element('i'),element('b','',item.cover === 'focus' ? '25:00' : item.cover === 'desktop' ? 'XR' : '↗'));
+  cover.append(scene);
+  return cover;
+}
+function makeCard(item, index, count) {
+  const card = element('article','deck-card');
+  card.dataset.slideIndex = String(index);
+  card.setAttribute('role','group');
+  card.setAttribute('aria-roledescription','幻灯片');
+  card.setAttribute('aria-label',`${item.title}，${index + 1} / ${count}`);
+  const copy = element('div','card-copy');
+  const meta = element('div','card-meta');
+  meta.append(element('span','',`${String(index + 1).padStart(2,'0')} / ${String(count).padStart(2,'0')}`),element('span','',item.type || ''));
+  const action = element(item.href ? 'a' : 'button','card-action');
+  action.append(element('span','',item.action || '查看详情'),element('span','','↗'));
+  if (item.href) {
+    action.href = item.href;
+    if (item.download) action.setAttribute('download','');
+    else if (new URL(item.href,location.href).origin !== location.origin) { action.target = '_blank'; action.rel = 'noopener noreferrer'; }
+  } else {
+    action.type = 'button';
+    action.dataset.detail = item.detail || '';
+  }
+  copy.append(meta,element('h3','',item.title),element('p','',item.description || ''),action);
+  card.append(makeCover(item),copy);
+  return card;
+}
+function setupCarousel(carousel) {
+  const items = Array.isArray(profile[carousel.dataset.collection]) ? profile[carousel.dataset.collection] : [];
+  const stage = carousel.querySelector('.deck-stage');
+  const cards = items.map((item,index) => makeCard(item,index,items.length));
+  stage.append(...cards);
+  const previous = carousel.querySelector('[data-previous]');
+  const next = carousel.querySelector('[data-next]');
+  const counter = carousel.querySelector('.deck-counter');
+  const progress = carousel.querySelector('.deck-progress > i');
+  let index = 0;
+  let suppressClickUntil = 0;
+  function show(nextIndex) {
+    if (!cards.length) return;
+    const focusedCard = document.activeElement?.closest('.deck-card');
+    index = (nextIndex + cards.length) % cards.length;
+    cards.forEach((card,position) => {
+      let distance = (position - index + cards.length) % cards.length;
+      if (distance > cards.length / 2) distance -= cards.length;
+      card.style.setProperty('--shift',String(distance));
+      card.style.setProperty('--scale',distance === 0 ? '1' : '.85');
+      card.style.setProperty('--turn',`${-distance * 8}deg`);
+      card.classList.toggle('is-current',distance === 0);
+      card.classList.toggle('is-away',Math.abs(distance) > 1);
+      card.inert = distance !== 0;
+      card.setAttribute('aria-hidden',String(distance !== 0));
+    });
+    if (focusedCard?.inert) carousel.focus({preventScroll:true});
+    carousel.dataset.index = String(index);
+    counter.textContent = `${String(index + 1).padStart(2,'0')} / ${String(cards.length).padStart(2,'0')}`;
+    progress.style.width = `${(index + 1) / cards.length * 100}%`;
+  }
+  previous.disabled = next.disabled = cards.length < 2;
+  previous.addEventListener('click',() => show(index - 1));
+  next.addEventListener('click',() => show(index + 1));
+  carousel.addEventListener('keydown',event => {
+    if (!['ArrowLeft','ArrowRight'].includes(event.key) || event.target.closest('input,textarea,select')) return;
+    event.preventDefault();
+    show(index + (event.key === 'ArrowRight' ? 1 : -1));
+  });
+  let horizontalDelta = 0;
+  let lastWheel = 0;
+  stage.addEventListener('wheel',event => {
+    if (event.ctrlKey || Math.abs(event.deltaX) <= Math.abs(event.deltaY) || Math.abs(event.deltaX) < 2) return;
+    event.preventDefault();
+    if (Date.now() - lastWheel < 420) return;
+    horizontalDelta += event.deltaX;
+    if (Math.abs(horizontalDelta) > 45) {
+      show(index + (horizontalDelta > 0 ? 1 : -1));
+      horizontalDelta = 0;
+      lastWheel = Date.now();
+    }
+  },{passive:false});
+  let touchStart;
+  stage.addEventListener('pointerdown',event => {
+    if (event.pointerType === 'touch') touchStart = {x:event.clientX,y:event.clientY};
+  });
+  stage.addEventListener('pointerup',event => {
+    if (!touchStart) return;
+    const dx = event.clientX - touchStart.x;
+    const dy = event.clientY - touchStart.y;
+    touchStart = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      suppressClickUntil = Date.now() + 350;
+      show(index + (dx < 0 ? 1 : -1));
+    }
+  });
+  stage.addEventListener('pointercancel',() => { touchStart = null; });
+  stage.addEventListener('click',event => {
+    if (Date.now() < suppressClickUntil) { event.preventDefault(); event.stopPropagation(); }
+  },true);
+  if (cards.length) show(0);
+  else { stage.append(element('p','empty-collection','内容待补充。')); counter.textContent = '00 / 00'; progress.style.width = '0'; }
+}
+document.querySelectorAll('.carousel').forEach(setupCarousel);
+for (const key of ['projects','resources','writing']) {
+  document.querySelectorAll(`[data-count="${key}"]`).forEach(node => { node.textContent = String(profile[key]?.length || 0).padStart(2,'0'); });
+}
+document.querySelector('.status-summary').textContent = `${profile.projects?.length || 0} PROJECTS · ${profile.resources?.length || 0} RESOURCES · ${profile.writing?.length || 0} DRAFTS`;
+
 const dialog = document.getElementById('detail-dialog');
 function showDetail(entry) {
+  if (!entry) return;
   document.getElementById('dialog-label').textContent = entry.label;
   document.getElementById('dialog-title').textContent = entry.title;
   const body = document.getElementById('dialog-body');
   body.replaceChildren();
-  entry.blocks.forEach(([title, copy]) => {
-    const section = document.createElement('section');
-    const heading = document.createElement('h3'); heading.textContent = title;
-    const paragraph = document.createElement('p'); paragraph.textContent = copy;
-    section.append(heading, paragraph); body.append(section);
+  entry.blocks.forEach(([title,copy]) => {
+    const section = element('section');
+    section.append(element('h3','',title),element('p','',copy));
+    body.append(section);
   });
   dialog.showModal();
 }
-document.querySelectorAll('[data-detail]').forEach(button => button.addEventListener('click', () => showDetail(entries[button.dataset.detail])));
-document.getElementById('close-dialog').addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } });
-document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
-  document.querySelectorAll('[data-filter]').forEach(item => {
-    item.classList.toggle('active', item === button);
-    item.setAttribute('aria-pressed', String(item === button));
-  });
-  document.querySelectorAll('[data-category]').forEach(item => {
-    item.hidden = button.dataset.filter !== 'all' && item.dataset.category !== button.dataset.filter;
-  });
-}));
-
-const contactNote = document.getElementById('contact-note');
-if (profile.email || profile.wechat) contactNote.hidden = true;
-
-document.getElementById('contact-button').addEventListener('click', () => {
-  if (profile.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profile.email)) {
-    window.location.href = `mailto:${encodeURIComponent(profile.email)}?subject=${encodeURIComponent('从个人网站来打个招呼')}`;
-  } else if (profile.wechat) {
-    showDetail({label:'SAY HELLO',title:'很高兴认识你',blocks:[['微信', profile.wechat]]});
-  } else {
-    showDetail({label:'SAY HELLO',title:'很高兴认识你',blocks:[['联系方式待补充','王秀睿的联系邮箱或微信尚未公开。补充联系方式后，这里会展示联系入口。']]});
-  }
+document.addEventListener('click',event => {
+  const button = event.target.closest('button[data-detail]');
+  if (button) showDetail(entries[button.dataset.detail]);
 });
+document.getElementById('close-dialog').addEventListener('click',() => dialog.close());
+dialog.addEventListener('click',event => {
+  if (event.target !== dialog) return;
+  const box = dialog.getBoundingClientRect();
+  if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
+});
+const validEmail = profile.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profile.email);
+function contact() {
+  if (validEmail) location.href = `mailto:${encodeURIComponent(profile.email)}?subject=${encodeURIComponent('从个人主页来打个招呼')}`;
+  else if (profile.wechat) showDetail({label:'SAY HELLO',title:'很高兴认识你',blocks:[['微信',profile.wechat]]});
+  else showDetail({label:'SAY HELLO',title:'很高兴认识你',blocks:[['联系方式待补充','联系邮箱或微信尚未公开，补充后会在这里展示。']]});
+}
+document.getElementById('contact-button').addEventListener('click',contact);
+document.querySelectorAll('[data-contact]').forEach(button => button.addEventListener('click',contact));
+if (validEmail || profile.wechat) {
+  document.getElementById('contact-note').hidden = true;
+  document.querySelectorAll('[data-contact-label]').forEach(label => { label.textContent = validEmail ? profile.email : `微信：${profile.wechat}`; });
+  const sidebarContact = document.querySelector('[data-sidebar-contact]');
+  sidebarContact.textContent = `${validEmail ? profile.email : '通过微信联系'} ↗`;
+  if (validEmail) sidebarContact.href = `mailto:${profile.email}`;
+}
+
+// 所有章节始终保留在同一滚动容器中。导航只反映阅读位置，不控制面板显隐。
+let activeSection = '';
+const aliases = {home:'about',work:'projects',notes:'writing'};
+function normalizedSection(hash) {
+  const id = hash.replace(/^#/,'');
+  return aliases[id] || id;
+}
+function setActive(id) {
+  if (id === activeSection) return;
+  activeSection = id;
+  navigationLinks.forEach(link => {
+    const active = link.hash === `#${id}`;
+    link.classList.toggle('active',active);
+    if (active) link.setAttribute('aria-current','location');
+    else link.removeAttribute('aria-current');
+    if (active && matchMedia('(max-width: 760px)').matches) {
+      navigation.scrollTo({left:link.offsetLeft - navigation.offsetLeft - navigation.clientWidth / 2 + link.offsetWidth / 2,behavior:reducedMotion.matches ? 'instant' : 'smooth'});
+    }
+  });
+  if (location.hash !== `#${id}`) history.replaceState(null,'',`#${id}`);
+}
+function syncActiveSection() {
+  const cursor = main.getBoundingClientRect().top + Math.min(main.clientHeight * .28,180);
+  let current = sections[0];
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top <= cursor) current = section;
+    else break;
+  }
+  if (main.scrollTop + main.clientHeight >= main.scrollHeight - 3) current = sections[sections.length - 1];
+  setActive(current.id);
+}
+function scrollToSection(id,behavior = 'instant') {
+  const target = sections.find(section => section.id === normalizedSection(id));
+  if (!target) return false;
+  const top = target.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop;
+  main.scrollTo({top,behavior});
+  if (behavior === 'instant' || behavior === 'auto') syncActiveSection();
+  return true;
+}
+document.addEventListener('click',event => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const id = normalizedSection(link.hash);
+  if (!sections.some(section => section.id === id)) return;
+  event.preventDefault();
+  if (location.hash !== `#${id}`) history.pushState(null,'',`#${id}`);
+  scrollToSection(id,reducedMotion.matches ? 'instant' : 'smooth');
+});
+let scrollFrame;
+main.addEventListener('scroll',() => {
+  cancelAnimationFrame(scrollFrame);
+  scrollFrame = requestAnimationFrame(syncActiveSection);
+},{passive:true});
+// 在左栏滚动，仍然滚动右侧正文；保留 Ctrl+滚轮缩放及横向导航手势。
+sidebar.addEventListener('wheel',event => {
+  if (event.ctrlKey || dialog.open || !event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+  event.preventDefault();
+  const multiplier = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? main.clientHeight : 1;
+  main.scrollTop += event.deltaY * multiplier;
+},{passive:false});
+function restoreHash() { if (!scrollToSection(normalizedSection(location.hash))) syncActiveSection(); }
+window.addEventListener('popstate',restoreHash);
+window.addEventListener('hashchange',restoreHash);
+new ResizeObserver(() => requestAnimationFrame(syncActiveSection)).observe(main);
+if (!scrollToSection(normalizedSection(initialHash))) syncActiveSection();

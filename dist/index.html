@@ -3,52 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="王秀睿，AI 产品经理。个人介绍、作品探索与产品思考。">
-  <meta name="theme-color" content="#f8f8f6">
-  <title>王秀睿 — AI 产品经理</title>
+  <meta name="description" content="王秀睿，AI 产品经理。个人项目、方法工具与产品思考。滚动浏览我的个人空间。">
+  <meta name="theme-color" content="#e9edf2">
+  <title>王秀睿 · AI 产品经理 | XR OS</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="profile.js" defer></script>
+  <script src="details.js" defer></script>
   <script src="app.js" defer></script>
 </head>
-<body id="home">
-  <a class="skip-link" href="#main">跳转到内容</a>
-  <header class="site-header">
-    <div class="nav-inner content-width">
-      <a class="wordmark" href="#home" aria-label="王秀睿，返回首页"><span class="clay-mark" aria-hidden="true">✳</span><span data-name>王秀睿</span></a>
-      <nav aria-label="主导航"><a href="#about">关于</a><a href="#work">作品</a><a href="#notes">随笔</a><a class="nav-contact" href="#contact">联系我</a></nav>
-    </div>
-  </header>
-  <main id="main" class="content-width">
-    <section class="profile-section" id="about" aria-labelledby="profile-heading">
-      <p class="profile-role" data-role>AI 产品经理</p>
-      <h1 id="profile-heading">你好，我是<span data-name>王秀睿</span>。</h1>
-      <p class="profile-bio" data-bio>这里记录我的作品、产品思考，以及把一个问题变成一件作品的过程。欢迎逛逛，也欢迎交流。</p>
-      <div class="profile-actions"><a class="button primary" href="#work">看看我的作品 <span aria-hidden="true">↗</span></a><a class="inline-link" href="#notes">读读我的随笔 <span aria-hidden="true">↗</span></a></div>
-    </section>
-
-    <section class="work-section section" id="work" aria-labelledby="work-heading">
-      <div class="section-heading"><div><h2 id="work-heading">作品与探索</h2><p>让想法有个具体的样子。</p></div><div class="filters" role="group" aria-label="作品筛选"><button class="filter active" data-filter="all" aria-pressed="true">全部</button><button class="filter" data-filter="product" aria-pressed="false">产品探索</button><button class="filter" data-filter="research" aria-pressed="false">研究笔记</button></div></div>
-      <div class="projects">
-        <article class="project" data-category="product"><div class="project-top"><span>01 · AI 产品设计</span><span class="status-badge">概念示例</span></div><h3>让知识，不止于收藏</h3><p class="project-description">一个围绕检索、问答与知识连接的产品构想。</p><div class="project-bottom"><span>检索 / 问答 / 知识连接</span><button class="project-open" data-detail="knowledge" aria-label="查看示例项目：让知识不止于收藏">查看构想 <span aria-hidden="true">↗</span></button></div></article>
-        <article class="project" data-category="product"><div class="project-top"><span>02 · 体验设计</span><span class="status-badge">概念示例</span></div><h3>给专注，一点空间</h3><p class="project-description">探索更轻盈、更少打扰的专注体验。</p><div class="project-bottom"><span>专注 / 交互 / 体验</span><button class="project-open" data-detail="focus" aria-label="查看示例项目：给专注一点空间">查看构想 <span aria-hidden="true">↗</span></button></div></article>
-        <article class="project" data-category="research"><div class="project-top"><span>03 · 产品研究</span><span class="status-badge">内容示例</span></div><h3>从功能到体验的距离</h3><p class="project-description">一份拆解 AI 产品的方法与观察清单。</p><div class="project-bottom"><span>任务 / 场景 / 验证</span><button class="project-open" data-detail="research" aria-label="查看研究示例：从功能到体验">阅读笔记 <span aria-hidden="true">↗</span></button></div></article>
-      </div>
-      <p class="content-notice">以上为展示示例，待替换为真实项目。</p>
-    </section>
-
-    <section class="notes-section section" id="notes" aria-labelledby="notes-heading">
-      <div class="section-heading"><div><h2 id="notes-heading">一些思考，慢慢记录</h2><p>关于产品、方法，以及日常里冒出来的问题。</p></div></div>
-      <div class="notes-list">
-        <article class="note"><span class="note-category">产品思考</span><h3><button data-detail="note-one" aria-label="阅读提纲：AI 时代的产品经理"><span>当 AI 能力越来越强，产品经理该关注什么？</span><span aria-hidden="true">↗</span></button></h3><span class="note-status">主题提纲 · 示例</span></article>
-        <article class="note"><span class="note-category">方法与实践</span><h3><button data-detail="note-two" aria-label="阅读提纲：在画原型之前"><span>在画原型之前，先把问题问清楚</span><span aria-hidden="true">↗</span></button></h3><span class="note-status">主题提纲 · 示例</span></article>
-        <article class="note"><span class="note-category">日常观察</span><h3><button data-detail="note-three" aria-label="阅读提纲：没有标准答案的事"><span>留一点时间，给没有标准答案的事</span><span aria-hidden="true">↗</span></button></h3><span class="note-status">主题提纲 · 示例</span></article>
-      </div>
-    </section>
-
-    <section class="contact-section section" id="contact" aria-labelledby="contact-heading"><div class="contact-card"><div class="contact-copy"><h2 id="contact-heading">从一句你好，开始交流。</h2><p>聊产品、聊 AI，或者只是认识一下。</p></div><div class="contact-action"><button class="button primary" id="contact-button">和我联系 <span aria-hidden="true">↗</span></button><p class="contact-note" id="contact-note">联系方式待补充</p></div></div></section>
-  </main>
-  <footer class="site-footer"><div class="footer-inner content-width"><div class="footer-intro"><a href="#home" data-name>王秀睿</a><p>AI 产品经理的个人空间。</p></div><nav aria-label="页面导航"><span>浏览</span><a href="#about">关于我</a><a href="#work">作品与探索</a><a href="#notes">思考与随笔</a></nav><nav aria-label="更多链接"><span>更多</span><a href="https://github.com/xiaohaxi2-source/xiaohaxi2-source.github.io" target="_blank" rel="noopener noreferrer">GitHub</a><a href="#home">回到顶部</a></nav><p class="copyright">© <span id="year">2026</span> <span data-name>王秀睿</span></p></div></footer>
-  <dialog id="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-label"></span><button id="close-dialog" aria-label="关闭详情">×</button></div><h2 id="dialog-title"></h2><div id="dialog-body"></div><div class="dialog-bottom"><span data-name>王秀睿</span> · 个人空间</div></dialog>
+<body>
+  <a class="skip-link" href="#content">跳至内容</a>
+  <div class="desktop" id="desktop">
+    <header class="window-bar"><a class="window-brand" href="#about" aria-label="王秀睿，回到关于我"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><strong><span data-initials>XR</span><b>✳</b>OS</strong><span class="brand-caption">/ PORTFOLIO</span></a><div class="window-meta"><span class="online-label"><i class="status-dot" aria-hidden="true"></i>PERSONAL SPACE</span><a href="https://github.com/xiaohaxi2-source" data-github target="_blank" rel="noopener noreferrer">GITHUB ↗</a></div></header>
+    <aside class="sidebar" aria-label="站点导航">
+      <a class="sidebar-profile" href="#about"><span class="small-avatar avatar-slot"><span data-initials>XR</span><img data-avatar hidden alt="王秀睿的头像"></span><span><strong data-name>王秀睿</strong><small>AI PRODUCT MANAGER</small></span></a>
+      <p class="nav-label">EXPLORE / 探索</p>
+      <nav class="section-nav" aria-label="主要导航"><a class="active" href="#about" aria-current="location"><span class="nav-number">01</span><span>关于我</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#projects"><span class="nav-number">02</span><span>个人项目</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#resources"><span class="nav-number">03</span><span>工具与技能</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#writing"><span class="nav-number">04</span><span>文章</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#contact"><span class="nav-number">05</span><span>联系我</span><span class="nav-arrow" aria-hidden="true">↗</span></a></nav>
+      <div class="sidebar-bottom"><span class="online-label"><i class="status-dot" aria-hidden="true"></i>PORTFOLIO ONLINE</span><p>AI 产品 · 项目 · 思考</p><a href="#contact" data-sidebar-contact>联系方式待补充 ↗</a><span class="scroll-tip">SCROLL TO EXPLORE ↓</span></div>
+    </aside>
+    <main class="main-content" id="content" tabindex="0" aria-label="个人主页内容">
+      <section class="page-section about-section" id="about" aria-labelledby="about-heading">
+        <div class="chapter-bar"><span>01 / ABOUT ME</span><span>HELLO, WORLD. 👋</span></div>
+        <div class="about-hero"><div class="portrait-panel"><div class="portrait-media avatar-slot"><div class="portrait-fallback"><div class="portrait-coordinates" aria-hidden="true"><span>XR / 01</span><span>PERSONAL SPACE</span></div><span class="portrait-initials" data-initials aria-hidden="true">XR</span><span class="portrait-placeholder-label">个人照片待补充</span></div><img data-avatar hidden alt="王秀睿的个人头像"></div><div class="portrait-caption"><span data-english-name>WANG XIURUI</span><span>AI PRODUCT MANAGER</span></div></div><div class="about-copy"><span class="welcome-label"><i class="status-dot" aria-hidden="true"></i>WELCOME TO MY SPACE</span><h1 id="about-heading">你好，<br>我是<span data-name>王秀睿</span><span>。</span></h1><p class="about-role" data-role>AI 产品经理</p><p class="about-tagline" data-tagline>从真实的问题出发，把想法变成可使用、可验证的产品。</p><p class="about-bio" data-bio>这里记录我的作品、产品思考，以及把一个问题变成一件作品的过程。欢迎逛逛，也欢迎交流。</p><div class="about-actions"><a class="button primary" href="#projects">查看项目 <span aria-hidden="true">↗</span></a><a class="button secondary" href="#writing">阅读文章 <span aria-hidden="true">↗</span></a></div></div></div>
+        <div class="focus-heading"><div><span>FOCUS AREAS</span><h2>从问题走向作品</h2></div><p>向下滚动，继续探索我的个人空间。</p></div><div class="focus-grid"><a class="focus-card build" href="#projects"><span>01 / BUILD</span><h3>AI 产品与工作流</h3><p>项目构想、交互思路与动手实践的记录。</p><small>探索项目 ↗</small></a><a class="focus-card share" href="#resources"><span>02 / SHARE</span><h3>方法与工具</h3><p>整理常用清单、访谈提纲和评估模板。</p><small>查看资源 ↗</small></a><a class="focus-card think" href="#writing"><span>03 / THINK</span><h3>产品思考与写作</h3><p>记录产品、AI 与日常体验中的观察。</p><small>阅读文章 ↗</small></a></div>
+      </section>
+      <section class="page-section collection-section" id="projects" aria-labelledby="projects-heading"><div class="chapter-bar"><span>02 / SELECTED PROJECTS</span><span>WORK & EXPLORATIONS</span></div><div class="collection-heading"><div><p>SELECTED WORK / 精选项目</p><h2 id="projects-heading">让想法具体，<br>让实践发生。</h2></div><div class="collection-count"><strong data-count="projects">04</strong><span>PROJECTS</span></div></div><div class="collection-wrap"><p class="collection-label">PROJECT INDEX</p><div class="carousel" data-collection="projects" data-noun="项目" aria-label="个人项目展廊" aria-roledescription="轮播" tabindex="0"><div class="deck-stage"></div><button class="deck-control previous" data-previous aria-label="上一个项目">‹</button><button class="deck-control next" data-next aria-label="下一个项目">›</button><div class="deck-meta"><span>← → 键切换 / 触控板横向滑动</span><strong class="deck-counter" aria-live="polite">01 / 04</strong><span class="deck-progress" aria-hidden="true"><i></i></span></div></div><div class="collection-footnote"><span>已发布项目与概念构想分别标注。</span><a href="https://github.com/xiaohaxi2-source?tab=repositories" target="_blank" rel="noopener noreferrer">浏览公开仓库 ↗</a></div></div></section>
+      <section class="page-section collection-section" id="resources" aria-labelledby="resources-heading"><div class="chapter-bar"><span>03 / DOCUMENTS & TOOLS</span><span>METHODS IN PRACTICE</span></div><div class="collection-heading"><div><p>TOOLS & RESOURCES / 工具与技能</p><h2 id="resources-heading">把方法整理下来，<br>让思考可以复用。</h2></div><div class="collection-count"><strong data-count="resources">04</strong><span>RESOURCES</span></div></div><div class="collection-wrap"><p class="collection-label">RESOURCE INDEX</p><div class="carousel" data-collection="resources" data-noun="资源" aria-label="方法与资源展廊" aria-roledescription="轮播" tabindex="0"><div class="deck-stage"></div><button class="deck-control previous" data-previous aria-label="上一个资源">‹</button><button class="deck-control next" data-next aria-label="下一个资源">›</button><div class="deck-meta"><span>← → 键切换 / 触控板横向滑动</span><strong class="deck-counter" aria-live="polite">01 / 04</strong><span class="deck-progress" aria-hidden="true"><i></i></span></div></div><div class="collection-footnote"><span>可直接阅读或下载的模板与源码。</span><a href="resources/product-research.md" download>下载产品拆解清单 ↗</a></div></div></section>
+      <section class="page-section collection-section" id="writing" aria-labelledby="writing-heading"><div class="chapter-bar"><span>04 / WRITING & NOTES</span><span>THOUGHTS IN PROGRESS</span></div><div class="collection-heading"><div><p>WRITING / 文章与记录</p><h2 id="writing-heading">持续观察，<br>把思考写下来。</h2></div><div class="collection-count"><strong data-count="writing">03</strong><span>DRAFTS</span></div></div><div class="collection-wrap"><p class="collection-label">ARTICLE ARCHIVE</p><div class="carousel" data-collection="writing" data-noun="文章" aria-label="文章提纲展廊" aria-roledescription="轮播" tabindex="0"><div class="deck-stage"></div><button class="deck-control previous" data-previous aria-label="上一篇文章">‹</button><button class="deck-control next" data-next aria-label="下一篇文章">›</button><div class="deck-meta"><span>← → 键切换 / 触控板横向滑动</span><strong class="deck-counter" aria-live="polite">01 / 03</strong><span class="deck-progress" aria-hidden="true"><i></i></span></div></div><div class="collection-footnote"><span>当前为写作提纲示例，待补充正式文章。</span><a href="#contact">交流一个想法 ↗</a></div></div></section>
+      <section class="page-section contact-section" id="contact" aria-labelledby="contact-heading"><div class="chapter-bar"><span>05 / GET IN TOUCH</span><span>LET'S CONNECT</span></div><div class="contact-hero"><div><p class="section-eyebrow">HAVE AN IDEA? / 交流一下</p><h2 id="contact-heading">从一句你好开始，<br>聊聊下一个想法。</h2><p class="contact-description">聊产品、聊 AI，或者只是认识一下。</p><button class="button primary" id="contact-button">和我联系 <span aria-hidden="true">↗</span></button><p class="contact-note" id="contact-note">联系方式待补充</p></div><svg class="contact-art" viewBox="0 0 300 260" aria-hidden="true"><rect x="35" y="42" width="190" height="132" rx="24" fill="#e8ecff" stroke="#c8d1f8"/><path d="M75 85h108M75 110h75M75 135h95" stroke="#9caaf1" stroke-width="9" stroke-linecap="round"/><path d="m74 174-16 35 55-35" fill="#e8ecff" stroke="#c8d1f8"/><rect x="144" y="131" width="112" height="82" rx="20" fill="#fbfcfe" stroke="#ced7ed"/><path d="m211 213 23 20-6-20" fill="#fbfcfe" stroke="#ced7ed"/><circle cx="171" cy="170" r="6" fill="#5268e8"/><circle cx="200" cy="170" r="6" fill="#5268e8"/><circle cx="229" cy="170" r="6" fill="#5268e8"/></svg></div><div class="contact-grid"><button class="contact-tile" data-contact><span>01 / EMAIL & WECHAT</span><strong data-contact-label>联系方式待补充</strong><span aria-hidden="true">↗</span></button><a class="contact-tile" href="https://github.com/xiaohaxi2-source" data-github target="_blank" rel="noopener noreferrer"><span>02 / GITHUB</span><strong>xiaohaxi2-source</strong><span aria-hidden="true">↗</span></a><a class="contact-tile" href="#writing"><span>03 / WRITING</span><strong>我的产品思考与记录</strong><span aria-hidden="true">↗</span></a></div><p class="contact-signoff">感谢来访。欢迎带着具体的问题，一起聊聊。</p></section>
+      <noscript><p class="noscript-message">请启用 JavaScript 以使用滚动导航和作品展廊，或直接查看 <a href="https://github.com/xiaohaxi2-source/xiaohaxi2-source.github.io">GitHub 仓库</a>。</p></noscript>
+    </main>
+    <footer class="status-bar"><span class="online-label"><i class="status-dot" aria-hidden="true"></i><span data-initials>XR</span> OS / ONLINE</span><span class="status-summary">4 PROJECTS · 4 RESOURCES · 3 DRAFTS</span><span>© <span id="year">2026</span> <span data-name>王秀睿</span></span></footer>
+  </div>
+  <dialog id="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-label"></span><button id="close-dialog" aria-label="关闭详情">×</button></div><h2 id="dialog-title"></h2><div id="dialog-body"></div><div class="dialog-bottom"><span data-name>王秀睿</span> · XR OS</div></dialog>
 </body>
 </html>
