@@ -54,62 +54,37 @@ function showDetail(entry) {
 document.querySelectorAll('[data-detail]').forEach(button => button.addEventListener('click', () => showDetail(entries[button.dataset.detail])));
 document.getElementById('close-dialog').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } });
-const gallery = document.getElementById('project-track');
-const galleryPrevious = document.getElementById('gallery-prev');
-const galleryNext = document.getElementById('gallery-next');
-const galleryPosition = document.getElementById('gallery-position');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-function galleryItems() {
-  return [...gallery.querySelectorAll('.project')].filter(item => !item.hidden);
-}
-function cardScrollLeft(card) {
-  return card.offsetLeft - gallery.offsetLeft - parseFloat(getComputedStyle(gallery).paddingLeft);
-}
-function galleryIndex() {
-  const items = galleryItems();
-  let nearest = 0;
-  items.forEach((item, index) => {
-    if (Math.abs(cardScrollLeft(item) - gallery.scrollLeft) < Math.abs(cardScrollLeft(items[nearest]) - gallery.scrollLeft)) nearest = index;
-  });
-  return nearest;
-}
-function updateGallery() {
-  const items = galleryItems();
-  const index = galleryIndex();
-  galleryPosition.textContent = `${index + 1} / ${items.length}`;
-  galleryPrevious.disabled = index === 0;
-  galleryNext.disabled = index === items.length - 1;
-  items.forEach(item => {
-    const bounds = item.getBoundingClientRect();
-    item.inert = bounds.right <= 0 || bounds.left >= innerWidth;
-  });
-}
-function moveGallery(direction) {
-  const items = galleryItems();
-  const index = Math.max(0, Math.min(items.length - 1, galleryIndex() + direction));
-  gallery.scrollTo({left:cardScrollLeft(items[index]), behavior: reducedMotion.matches ? 'instant' : 'smooth'});
-}
-galleryPrevious.addEventListener('click', () => moveGallery(-1));
-galleryNext.addEventListener('click', () => moveGallery(1));
-gallery.addEventListener('keydown', event => {
-  if (event.target === gallery && ['ArrowLeft', 'ArrowRight'].includes(event.key)) {
-    event.preventDefault();
-    moveGallery(event.key === 'ArrowRight' ? 1 : -1);
-  }
-});
-let galleryFrame;
-gallery.addEventListener('scroll', () => {
-  cancelAnimationFrame(galleryFrame);
-  galleryFrame = requestAnimationFrame(updateGallery);
-}, {passive:true});
-window.addEventListener('resize', updateGallery);
 document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
-  document.querySelectorAll('[data-filter]').forEach(item => { item.classList.toggle('active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
-  document.querySelectorAll('[data-category]').forEach(item => { item.hidden = button.dataset.filter !== 'all' && item.dataset.category !== button.dataset.filter; item.inert = false; });
-  gallery.scrollTo({left:0, behavior:'instant'});
-  updateGallery();
+  document.querySelectorAll('[data-filter]').forEach(item => {
+    item.classList.toggle('active', item === button);
+    item.setAttribute('aria-pressed', String(item === button));
+  });
+  document.querySelectorAll('[data-category]').forEach(item => {
+    item.hidden = button.dataset.filter !== 'all' && item.dataset.category !== button.dataset.filter;
+  });
 }));
-updateGallery();
+
+const header = document.querySelector('.site-header');
+const fields = {rose:'#c9a9b5', white:'#ffffff', mustard:'#aa9e54'};
+const chapters = [...document.querySelectorAll('[data-field]')];
+function syncHeader() {
+  const edge = header.getBoundingClientRect().bottom + 1;
+  const chapter = chapters.find(item => {
+    const bounds = item.getBoundingClientRect();
+    return bounds.top <= edge && bounds.bottom > edge;
+  });
+  header.style.backgroundColor = fields[chapter?.dataset.field || 'rose'];
+}
+let headerFrame;
+window.addEventListener('scroll', () => {
+  cancelAnimationFrame(headerFrame);
+  headerFrame = requestAnimationFrame(syncHeader);
+}, {passive:true});
+window.addEventListener('resize', syncHeader);
+syncHeader();
+const contactNote = document.getElementById('contact-note');
+if (profile.email || profile.wechat) contactNote.hidden = true;
+
 document.getElementById('contact-button').addEventListener('click', () => {
   if (profile.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profile.email)) {
     window.location.href = `mailto:${encodeURIComponent(profile.email)}?subject=${encodeURIComponent('从个人网站来打个招呼')}`;
