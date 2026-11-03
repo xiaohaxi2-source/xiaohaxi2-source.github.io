@@ -4,7 +4,7 @@ window.PROFILE = {
   englishName: 'WANG XIURUI',
   initials: 'XR',
   role: 'AI 产品经理',
-  avatar: '',
+  avatar: 'assets/profile-avatar.png',
   tagline: '从真实的问题出发，\n把想法变成可使用、可验证的产品。',
   bio: '这里整理个人项目、方法清单与产品思考，记录从一个问题到一件作品的过程。欢迎逛逛，也欢迎带着具体的问题一起交流。',
   email: '',

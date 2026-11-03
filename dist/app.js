@@ -153,9 +153,6 @@ function setupCarousel(carousel) {
   else { stage.append(element('p','empty-collection','内容待补充。')); counter.textContent = '00 / 00'; progress.style.width = '0'; }
 }
 document.querySelectorAll('.carousel').forEach(setupCarousel);
-for (const key of ['projects','resources','writing']) {
-  document.querySelectorAll(`[data-count="${key}"]`).forEach(node => { node.textContent = String(profile[key]?.length || 0).padStart(2,'0'); });
-}
 document.querySelector('.status-summary').textContent = `${profile.projects?.length || 0} PROJECTS · ${profile.resources?.length || 0} RESOURCES · ${profile.writing?.length || 0} ARTICLES`;
 
 const dialog = document.getElementById('detail-dialog');
